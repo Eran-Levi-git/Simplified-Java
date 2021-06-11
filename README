@@ -1,0 +1,60 @@
+
+=============================
+=      File description     =
+=============================
+
+
+Sjavac.java - main class of the project representing a tester for s-java code.
+
+Variable.java - Class representation for Variable.
+
+Method.java - Class representation for Method.
+
+Scope - Class representation for Scope.
+
+MethodDefinitionScope.java - Class representation for Method Definition Scope.
+
+ConditionScope.java -  Class representation for Condition Scope.
+
+Pattern.java - A Stock of patterns concerning checks using regular expressions.
+
+IllegalCodeException - An exception that program will throw and handle to test if the lines in the
+                       s-java file given legal or not.
+
+
+=============================
+=          Design           =
+=============================
+
+Each possible code section is handled differently meaning I differ between
+handling variable declarations, method declarations and conditions.
+
+Majority of Patterns are separated from the rest of the code in order to keep the main code organized, short
+readable and less bug prone.
+
+Inheritance is using creating our unique Exception and also implementing scopes.
+
+=============================
+=  Implementation details   =
+=============================
+
+Sjavac main method iterating s-java global code lines.
+Each line is checked based on regex patterns, checking all possible s-java line syntax at the moment.
+Identifying legal line followed by delegation to the respective object for handling that line and next lines.
+The same handling pattern is used in ConditionScope and MethodDefinitionScope, that's logical because these
+three classes handling all possible scopes.
+
+IllegalCodeException is throne whenever an s-java rule violation is found, it will cause code to print an
+informative message concerning the s-java rule violation and 1 - as asked.
+
+Variable and Method classes represents these programmatic creatures, they also contain some methods concerning
+these objects for the package usage.
+
+In Sjavac, checkCode method is performing all of the checks can take place while parsing the code and collects
+al the data about the checks that cannot be checked while parsing (such as referring to undeclared global
+variables).
+Afterwards lastChecks method is performing the rest of the checks based on data collected by checkCode.
+0,1 or 2 will be print in the end.
+
+
+
